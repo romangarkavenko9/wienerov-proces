@@ -38,7 +38,7 @@ int main() {
             double v1 = ((double)(rand()) + 1.) / ((double)(RAND_MAX)+1.);
             double v2 = ((double)(rand()) + 1.) / ((double)(RAND_MAX)+1.);
             vect.push_back(pomoc2);
-            pomoc2 = pomoc2 + sqrt(T / (N)) * cos(2 * M_PI * v2) * sqrt(-2. * log(v1) * 0.02);
+            pomoc2 = pomoc2 + sqrt(T / (N)) * cos(2 * M_PI * v2) * sqrt(-2. * log(v1) * 0.002);
         }
         nah_traj Point(time, vect);
         TR1 = Point;
@@ -50,12 +50,12 @@ int main() {
     if (vypis.is_open()) {
         vypis << "x,y,typ,farba" << std::endl;
         for (int i = 0; i < poc_t; i++) {
-            if (Tr.at(i).get_y().at(2) > 0.002 && Tr.at(i).get_y().at(3) + Tr.at(i).get_y().at(2) < 0.002)
+            if (Tr.at(i).get_y().at(2) > 0.002 && Tr.at(i).get_y().at(3) < 0.002)
                 pr++;
             
             for (int j = 0; j < Tr.at(i).get_x().size(); j++) {
                 vypis << Tr.at(i).get_x().at(j) << "," << Tr.at(i).get_y().at(j) << "," << i << ",";
-                if (Tr.at(i).get_y().at(2) > 0.002 && Tr.at(i).get_y().at(3) + Tr.at(i).get_y().at(2) < 0.002)
+                if (Tr.at(i).get_y().at(2) > 0.002 && Tr.at(i).get_y().at(3) < 0.002)
                     vypis << 0 << std::endl;
                 else
                     vypis << 1 << std::endl;
